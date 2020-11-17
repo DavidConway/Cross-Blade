@@ -1,5 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp.dll:
+    - Movement
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
@@ -45,6 +47,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Rendering.Universal.UniversalProjectSettings
     Unity.XR.Interaction.Toolkit.dll:
     - UnityEngine.XR.Interaction.Toolkit.ActionBasedController
+    - UnityEngine.XR.Interaction.Toolkit.LocomotionSystem
     - UnityEngine.XR.Interaction.Toolkit.XRInteractionManager
     - UnityEngine.XR.Interaction.Toolkit.XRInteractorLineVisual
     - UnityEngine.XR.Interaction.Toolkit.XRRayInteractor
@@ -57,6 +60,8 @@ ScriptsOnlyBuild:
     Unity.XR.MockHMD.dll:
     - Unity.XR.MockHMD.MockHMDBuildSettings
     - Unity.XR.MockHMD.MockHMDLoader
+    Unity.XR.Oculus.Editor.dll:
+    - Unity.XR.Oculus.Editor.OculusSettingsEditor
     Unity.XR.Oculus.dll:
     - Unity.XR.Oculus.OculusLoader
     - Unity.XR.Oculus.OculusSettings
@@ -84,6 +89,8 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Text
     - UnityEngine.UI.Toggle
     - UnityEngine.UI.VerticalLayoutGroup
+    com.unity.multiplayer-hlapi.Runtime.dll:
+    - UnityEngine.Networking.NetworkCallbacks
   sceneClasses:
     Assets/Scenes/VoidMain.unity:
     - Class: 1
@@ -104,16 +111,16 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 65
+    - Class: 64
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 11508}
     - Class: 114
       Script: {instanceID: 11510}
     - Class: 114
@@ -127,19 +134,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11520}
     - Class: 114
-      Script: {instanceID: 11718}
+      Script: {instanceID: 11522}
     - Class: 114
-      Script: {instanceID: 11894}
+      Script: {instanceID: 11720}
     - Class: 114
-      Script: {instanceID: 11938}
+      Script: {instanceID: 11896}
     - Class: 114
-      Script: {instanceID: 12176}
+      Script: {instanceID: 11940}
     - Class: 114
-      Script: {instanceID: 12252}
+      Script: {instanceID: 12178}
     - Class: 114
-      Script: {instanceID: 12486}
+      Script: {instanceID: 12254}
     - Class: 114
-      Script: {instanceID: 12626}
+      Script: {instanceID: 12288}
+    - Class: 114
+      Script: {instanceID: 12488}
+    - Class: 114
+      Script: {instanceID: 12628}
     - Class: 114
       Script: {instanceID: 12948}
     - Class: 114
@@ -153,58 +164,62 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13880}
     - Class: 114
-      Script: {instanceID: 14052}
+      Script: {instanceID: 13938}
     - Class: 114
-      Script: {instanceID: 14454}
+      Script: {instanceID: 14054}
     - Class: 114
-      Script: {instanceID: 14486}
+      Script: {instanceID: 14456}
     - Class: 114
-      Script: {instanceID: 14908}
+      Script: {instanceID: 14488}
     - Class: 114
-      Script: {instanceID: 14992}
+      Script: {instanceID: 14910}
     - Class: 114
-      Script: {instanceID: 15016}
+      Script: {instanceID: 14994}
     - Class: 114
-      Script: {instanceID: 15168}
+      Script: {instanceID: 15018}
     - Class: 114
-      Script: {instanceID: 15206}
+      Script: {instanceID: 15170}
     - Class: 114
-      Script: {instanceID: 15214}
+      Script: {instanceID: 15208}
     - Class: 114
-      Script: {instanceID: 15292}
+      Script: {instanceID: 15216}
     - Class: 114
-      Script: {instanceID: 15634}
+      Script: {instanceID: 15294}
     - Class: 114
-      Script: {instanceID: 15724}
+      Script: {instanceID: 15636}
     - Class: 114
-      Script: {instanceID: 15812}
+      Script: {instanceID: 15726}
     - Class: 114
-      Script: {instanceID: 15958}
+      Script: {instanceID: 15814}
     - Class: 114
-      Script: {instanceID: 16058}
+      Script: {instanceID: 15960}
     - Class: 114
-      Script: {instanceID: 16294}
+      Script: {instanceID: 16060}
     - Class: 114
-      Script: {instanceID: 16348}
+      Script: {instanceID: 16296}
     - Class: 114
-      Script: {instanceID: 16514}
+      Script: {instanceID: 16350}
     - Class: 114
-      Script: {instanceID: 16644}
+      Script: {instanceID: 16516}
     - Class: 114
-      Script: {instanceID: 16650}
+      Script: {instanceID: 16646}
     - Class: 114
-      Script: {instanceID: 16662}
+      Script: {instanceID: 16652}
     - Class: 114
-      Script: {instanceID: 16740}
+      Script: {instanceID: 16664}
     - Class: 114
-      Script: {instanceID: 16908}
+      Script: {instanceID: 16742}
     - Class: 114
-      Script: {instanceID: 16914}
+      Script: {instanceID: 16910}
+    - Class: 114
+      Script: {instanceID: 16916}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 143
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -611,12 +626,6 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: test
-  - hash:
-      serializedVersion: 2
       Hash: 52bcb9c2a78bdd8d98a59e915c346e75
     assemblyName: UnityEngine.XR.LegacyInputHelpers.dll
     namespaceName: UnityEngine.XR.LegacyInputHelpers
@@ -825,6 +834,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: 6c98344e265bfeda5eab68e5a5cc0553
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Movement
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1584,5 +1599,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/VoidMain.unity
-  playerPath: C:/Users/dconw/Documents/CrossBladeProject/Cross-Blade/Cross Blade/builds/alpha
-    1.0.0.apk
+  playerPath: C:/Users/dconw/Documents/CrossBladeProject/Cross-Blade/Cross Blade/builds/test.apk

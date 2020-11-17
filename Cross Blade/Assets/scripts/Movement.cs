@@ -41,9 +41,9 @@ public class Movement : LocomotionProvider
 
     void updateHeadPos() // updatex the heads position and the player controler
     {
-        float headY = head.transform.position.y;
+        float headY = head.transform.localPosition.y;
         character.height = headY;
-        character.center = new Vector3(head.transform.position.x, (headY / 2) + character.skinWidth, head.transform.position.z);
+        character.center = new Vector3(head.transform.localPosition.x, (headY/2)+ character.skinWidth, head.transform.localPosition.z);
     }
 
     void Move()
@@ -72,10 +72,14 @@ public class Movement : LocomotionProvider
         }
 
         // checks to see if head or hand should be used for direcrtion
-        if (rightHand.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion baseRotation) && !useHeadDirection)
+        if (useRightHand && rightHand.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion baseRotation) && !useHeadDirection )
         {
             rotation = new Vector3(0, baseRotation.eulerAngles.y, 0);
 
+        }
+        else if (!useRightHand && leftHand.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion baseRotation2) && !useHeadDirection)
+        {
+            rotation = new Vector3(0, baseRotation2.eulerAngles.y, 0);
         }
         else if (useHeadDirection)
         {
@@ -87,7 +91,6 @@ public class Movement : LocomotionProvider
         }
 
         direction = Quaternion.Euler(rotation) * direction; //cobines direction and rotation
-        direction = direction.normalized;//normalises
 
         character.Move((direction*2)*Time.deltaTime); //applyes speed
 
