@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - Movement
+    - weponHandeler
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
@@ -17,6 +18,8 @@ ScriptsOnlyBuild:
     - UnityEditor.ProBuilder.EditorToolbar
     - UnityEditor.ProBuilder.ProBuilderEditor
     - UnityEditor.ProBuilder.UVEditor
+    Unity.ProBuilder.dll:
+    - UnityEngine.ProBuilder.ProBuilderMesh
     Unity.RenderPipelines.Core.Runtime.dll:
     - UnityEngine.Rendering.UI.DebugUIHandlerBitField
     - UnityEngine.Rendering.UI.DebugUIHandlerButton
@@ -49,8 +52,6 @@ ScriptsOnlyBuild:
     - UnityEngine.XR.Interaction.Toolkit.ActionBasedController
     - UnityEngine.XR.Interaction.Toolkit.LocomotionSystem
     - UnityEngine.XR.Interaction.Toolkit.XRInteractionManager
-    - UnityEngine.XR.Interaction.Toolkit.XRInteractorLineVisual
-    - UnityEngine.XR.Interaction.Toolkit.XRRayInteractor
     - UnityEngine.XR.Interaction.Toolkit.XRRig
     Unity.XR.Management.Editor.dll:
     - UnityEditor.XR.Management.XRGeneralSettingsPerBuildTarget
@@ -60,8 +61,6 @@ ScriptsOnlyBuild:
     Unity.XR.MockHMD.dll:
     - Unity.XR.MockHMD.MockHMDBuildSettings
     - Unity.XR.MockHMD.MockHMDLoader
-    Unity.XR.Oculus.Editor.dll:
-    - Unity.XR.Oculus.Editor.OculusSettingsEditor
     Unity.XR.Oculus.dll:
     - Unity.XR.Oculus.OculusLoader
     - Unity.XR.Oculus.OculusSettings
@@ -76,6 +75,8 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
+    - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.ContentSizeFitter
@@ -111,7 +112,11 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
     - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
@@ -150,11 +155,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12488}
     - Class: 114
+      Script: {instanceID: 12588}
+    - Class: 114
       Script: {instanceID: 12628}
     - Class: 114
       Script: {instanceID: 12948}
     - Class: 114
       Script: {instanceID: 13048}
+    - Class: 114
+      Script: {instanceID: 13248}
     - Class: 114
       Script: {instanceID: 13410}
     - Class: 114
@@ -200,24 +209,24 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 16350}
     - Class: 114
-      Script: {instanceID: 16516}
-    - Class: 114
       Script: {instanceID: 16646}
     - Class: 114
       Script: {instanceID: 16652}
     - Class: 114
-      Script: {instanceID: 16664}
+      Script: {instanceID: 16692}
     - Class: 114
       Script: {instanceID: 16742}
     - Class: 114
       Script: {instanceID: 16910}
     - Class: 114
       Script: {instanceID: 16916}
+    - Class: 114
+      Script: {instanceID: 39888}
     - Class: 115
       Script: {instanceID: 0}
-    - Class: 120
-      Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 136
       Script: {instanceID: 0}
     - Class: 143
       Script: {instanceID: 0}
@@ -1596,7 +1605,14 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
     className: DebugUIHandlerIndirectFloatField
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: weponHandeler
   platform: 13
   scenePathNames:
   - Assets/Scenes/VoidMain.unity
-  playerPath: C:/Users/dconw/Documents/CrossBladeProject/Cross-Blade/Cross Blade/builds/test.apk
+  playerPath: C:/Users/dconw/Documents/CrossBladeProject/Cross-Blade/Cross Blade/builds/alpha
+    1.0.1.apk
