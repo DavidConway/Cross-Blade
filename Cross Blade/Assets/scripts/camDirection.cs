@@ -15,7 +15,7 @@ public class camDirection : MonoBehaviour
     void Update()
     {
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, cam.transform.eulerAngles.y, transform.eulerAngles.z);
-        transform.position = new Vector3(cam.transform.position.x,0,cam.transform.position.z);
+        transform.position = new Vector3(cam.transform.position.x,this.transform.position.y,cam.transform.position.z);
 
     }
 }

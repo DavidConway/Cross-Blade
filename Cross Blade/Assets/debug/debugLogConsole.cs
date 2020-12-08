@@ -17,7 +17,7 @@ public class debugLogConsole : MonoBehaviour
     {
         test.Insert(0,inString);
         if (test.Count > s_max){ 
-            test.RemoveAt(s_max+1);
+            test.RemoveAt(s_max);
         }
     }
     private void Awake()

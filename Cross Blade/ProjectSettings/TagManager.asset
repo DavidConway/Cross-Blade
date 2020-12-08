@@ -9,21 +9,16 @@ TagManager:
   - points
   - blunts
   - pummels
-  - leftShin
-  - leftThigh
-  - rightThigh
-  - rightShin
   - leftSholder
-  - leftUpperArm
-  - leftLowerArm
   - rightSholder
-  - rightUpperArm
-  - rightLowerArm
   - head
   - leftSide
   - rightSide
-  - rightHip
-  - leftHip
+  - handel
+  - leftArm
+  - rightArm
+  - leftLeg
+  - rightLeg
   layers:
   - Default
   - TransparentFX
