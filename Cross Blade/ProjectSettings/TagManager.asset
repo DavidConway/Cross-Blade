@@ -9,6 +9,21 @@ TagManager:
   - points
   - blunts
   - pummels
+  - leftShin
+  - leftThigh
+  - rightThigh
+  - rightShin
+  - leftSholder
+  - leftUpperArm
+  - leftLowerArm
+  - rightSholder
+  - rightUpperArm
+  - rightLowerArm
+  - head
+  - leftSide
+  - rightSide
+  - rightHip
+  - leftHip
   layers:
   - Default
   - TransparentFX
@@ -21,10 +36,10 @@ TagManager:
   - PostProcessing
   - player
   - playerWeapon
-  - 
-  - 
-  - 
-  - 
+  - envi
+  - test
+  - enamy
+  - chargeBox
   - 
   - 
   - 
@@ -45,4 +60,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ui
+    uniqueID: 817501011
     locked: 0

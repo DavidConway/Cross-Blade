@@ -127,6 +127,7 @@ PlayerSettings:
   bundleVersion: 0.1
   preloadedAssets:
   - {fileID: 0}
+  - {fileID: 11400000, guid: 33f11225f34acaa4d948a8628cb0214a, type: 2}
   - {fileID: 11400000, guid: 791484ff9e2cd2d48b8f764a1239dd3f, type: 2}
   - {fileID: 2640628484954779331, guid: 34c393a76e4c20342a87b018ca99f09d, type: 2}
   - {fileID: 11400000, guid: aa3d8bdfe3132884488be087751157e5, type: 2}
@@ -776,5 +777,5 @@ PlayerSettings:
   organizationId: 
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 1
-  disableOldInputManagerSupport: 1
+  disableOldInputManagerSupport: 0
   legacyClampBlendShapeWeights: 0
