@@ -124,7 +124,7 @@ public class hitBoxHandeler : MonoBehaviour
                                     case Height.mid:
                                         {
                                             if (myCol.tag == "leftArm" || myCol.tag == "head" ||
-                                                myCol.tag == "lefttSide" || myCol.tag == "leftLeg")
+                                                myCol.tag == "leftSide" || myCol.tag == "leftLeg")
                                             {
                                                 debugLogConsole.uiLog("mid right slash");
                                                 break;
