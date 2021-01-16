@@ -11613,7 +11613,7 @@ GameObject:
   - component: {fileID: 8966412771689307738}
   m_Layer: 10
   m_Name: protoSheild
-  m_TagString: Untagged
+  m_TagString: weaponRoot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

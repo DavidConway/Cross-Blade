@@ -13,6 +13,7 @@ public class chargBoxSetter : MonoBehaviour
         weponHandeler wepon = other.GetComponentInParent<weponHandeler>();
         if (other.gameObject.tag == "handel")
         {
+             debugLogConsole.uiLog(wepon.gameObject.name);
             wepon.active = true;
             wepon.height = height;
             wepon.side = side;
