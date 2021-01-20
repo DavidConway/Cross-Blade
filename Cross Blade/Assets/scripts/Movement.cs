@@ -11,13 +11,14 @@ public class Movement : LocomotionProvider
     private InputDevice rightHand;
     private InputDevice leftHand;
 
+    private OptionHolder options;
+
     private CharacterController character = null;
     private GameObject head = null;
 
-    [SerializeField]
-    private bool useRightHand;
-    [SerializeField]
-    private bool useHeadDirection;
+    public bool useRightHand;
+
+    public bool useHeadDirection;
 
     // Start is called before the first frame update
     protected override void Awake()
@@ -28,7 +29,11 @@ public class Movement : LocomotionProvider
 
     void Start()
     {
+        options = GameObject.Find("constData").GetComponent<OptionHolder>();
         updateHeadPos();
+        useHeadDirection = options.moveByLooking;
+        useRightHand = options.leftHanded;
+
     }
 
     // Update is called once per frame
