@@ -14,7 +14,10 @@ public class Movement : LocomotionProvider
     private OptionHolder options;
 
     private CharacterController character = null;
-    private GameObject head = null;
+    private GameObject eyes = null;
+    private Vector3 headCenter;
+
+   // public GameObject test;
 
     public bool useRightHand;
 
@@ -24,12 +27,13 @@ public class Movement : LocomotionProvider
     protected override void Awake()
     {
         character = this.GetComponent<CharacterController>(); //gets charicter controler
-        head = this.GetComponent<XRRig>().cameraGameObject; //gets camera(players head)
+        eyes = this.GetComponent<XRRig>().cameraGameObject; //gets camera(players head)
     }
 
     void Start()
     {
         options = GameObject.Find("constData").GetComponent<OptionHolder>();
+        character.height = options.height;
         updateHeadPos();
         useHeadDirection = options.moveByLooking;
         useRightHand = options.leftHanded;
@@ -45,9 +49,9 @@ public class Movement : LocomotionProvider
 
     void updateHeadPos() // updatex the heads position and the player controler
     {
-        float headY = head.transform.localPosition.y;
-        character.height = headY;
-        character.center = new Vector3(head.transform.localPosition.x, (headY/2)+ character.skinWidth, head.transform.localPosition.z);
+        headCenter = (eyes.transform.localPosition + ((eyes.transform.forward * -1) * 0.1f));
+        character.center = new Vector3(headCenter.x, (options.height / 2) + character.skinWidth, headCenter.z);
+        //test.transform.position = eyes.transform.position + ((eyes.transform.forward * -1) * 0.1f);
     }
 
     void Move()
@@ -87,7 +91,7 @@ public class Movement : LocomotionProvider
         }
         else if (useHeadDirection)
         {
-            rotation = new Vector3(0, head.transform.eulerAngles.y, 0);
+            rotation = new Vector3(0, eyes.transform.eulerAngles.y, 0);
         }
         else
         {

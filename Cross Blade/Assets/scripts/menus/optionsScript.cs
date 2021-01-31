@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class optionsScript : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class optionsScript : MonoBehaviour
     Toggle leftHand;
     [SerializeField]
     Toggle moveDirection;
+    [SerializeField]
+    TMPro.TMP_Text height;
     [SerializeField]
     OptionHolder options;
     [SerializeField]
@@ -41,5 +45,13 @@ public class optionsScript : MonoBehaviour
     {
         options.moveByLooking = i.isOn;
         current.useHeadDirection = i.isOn;
+    }
+
+    public void setHight()
+    {
+        GameObject eyes = GameObject.Find("XR Rig").GetComponent<XRRig>().cameraGameObject;
+        Vector3 headCenter = (eyes.transform.localPosition + ((eyes.transform.forward * -1) * 0.1f));
+        options.height = headCenter.y + 0.15f;
+        height.text = options.height + "M";
     }
 }
