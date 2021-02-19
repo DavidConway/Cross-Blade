@@ -8,14 +8,22 @@ public class chargBoxSetter : MonoBehaviour
     public Side side;
     // Start is called before the first frame update
 
-    private void OnTriggerEnter(Collider other)
+
+    private void OnTriggerStay(Collider other)
     {
-        weponHandeler wepon = other.GetComponentInParent<weponHandeler>();
         if (other.gameObject.tag == "handel")
         {
-            wepon.active = true;
-            wepon.height = height;
-            wepon.side = side;
+            weponHandeler wepon = other.GetComponentInParent<weponHandeler>();
+            WeponSound weponSound = other.GetComponentInParent<WeponSound>();
+            //debugLogConsole.uiLog(other.gameObject.name + " side: " + wepon.side + " height: " + wepon.height);
+            //debugLogConsole.uiLog("this" + " side: " + side + " height: " + height);
+            if (!wepon.active || wepon.height != height || wepon.side != side)
+            {
+                wepon.active = true;
+                wepon.height = height;
+                wepon.side = side;
+                weponSound.PlayCharge();
+            }
         }
     }
 }

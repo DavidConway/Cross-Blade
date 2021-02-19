@@ -27,12 +27,12 @@ public class optionsScript : MonoBehaviour
 
         leftHand.onValueChanged.AddListener(delegate { leftHandToggel(leftHand); });
         moveDirection.onValueChanged.AddListener(delegate { moveChange(moveDirection);});
+        height.text = options.height + "M";
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     void leftHandToggel(Toggle i)
@@ -51,7 +51,7 @@ public class optionsScript : MonoBehaviour
     {
         GameObject eyes = GameObject.Find("XR Rig").GetComponent<XRRig>().cameraGameObject;
         Vector3 headCenter = (eyes.transform.localPosition + ((eyes.transform.forward * -1) * 0.1f));
-        options.height = headCenter.y + 0.15f;
+        options.height = headCenter.y + 0.25f;
         height.text = options.height + "M";
     }
 }

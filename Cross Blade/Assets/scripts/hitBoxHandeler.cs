@@ -21,6 +21,7 @@ public class hitBoxHandeler : MonoBehaviour
     {
         GameObject myCol = collision.contacts[0].thisCollider.gameObject;
         GameObject colitionPoint = collision.collider.gameObject;
+        WeponSound wepSound = colitionPoint.GetComponentInParent<WeponSound>();
         try
         {
             weponHandeler wepon = collision.gameObject.GetComponentInParent<weponHandeler>();
@@ -30,6 +31,8 @@ public class hitBoxHandeler : MonoBehaviour
                 if (colitionPoint.tag != "blunts") //the blut is used only defensively
                 {
                     wepon.active = false;
+                    bool playsound = true;
+               
                     //debugLogConsole.uiLog(wepon.gameObject.name + " deactive " + myCol.tag + " " + colitionPoint.tag);
                     if (colitionPoint.tag == "pummels") // pummel has a saepecel effect
                     {
@@ -67,6 +70,7 @@ public class hitBoxHandeler : MonoBehaviour
                                             else
                                             {
                                                 debugLogConsole.uiLog("top left slash failed");
+                                                playsound = false;
                                                 break;
                                             }
 
@@ -82,6 +86,7 @@ public class hitBoxHandeler : MonoBehaviour
                                             else
                                             {
                                                 debugLogConsole.uiLog("mid left slash failed");
+                                                playsound = false;
                                                 break;
                                             }
                                         }
@@ -95,6 +100,7 @@ public class hitBoxHandeler : MonoBehaviour
                                         else
                                         {
                                             debugLogConsole.uiLog("bot left slash failed");
+                                            playsound = false;
                                             break;
                                         }
                                 }
@@ -117,6 +123,7 @@ public class hitBoxHandeler : MonoBehaviour
                                             else
                                             {
                                                 debugLogConsole.uiLog("top right slash failed");
+                                                playsound = false;
                                                 break;
                                             }
 
@@ -132,6 +139,7 @@ public class hitBoxHandeler : MonoBehaviour
                                             else
                                             {
                                                 debugLogConsole.uiLog("mid right slash failed");
+                                                playsound = false;
                                                 break;
                                             }
                                         }
@@ -145,6 +153,7 @@ public class hitBoxHandeler : MonoBehaviour
                                         else
                                         {
                                             debugLogConsole.uiLog("bot right slash failed");
+                                            playsound = false;
                                             break;
                                         }
                                 }
@@ -157,6 +166,14 @@ public class hitBoxHandeler : MonoBehaviour
 
                             }
                         }
+                    }
+                    if (playsound)
+                    {
+                        wepSound.PlayHit();
+                    }
+                    else
+                    {
+                        wepSound.PlayBlock();
                     }
                 }
             }

@@ -16,10 +16,10 @@ public class TutorialScreen : MonoBehaviour
     LevelInfo error = new LevelInfo("ERROR", "ERROR", "ERROR", "ERROR");
     void Start()
     {
-        List<string> levels = new List<string> { "testLevel","extra"};
+        List<string> levels = new List<string> { "testLevel"};
         levelSelect.AddOptions(levels);
 
-        updateSelect(-1);
+        updateSelect(0);
 
         levelSelect.onValueChanged.AddListener(delegate { dropChange(levelSelect); });
 

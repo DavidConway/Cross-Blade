@@ -28,12 +28,15 @@ public class Movement : LocomotionProvider
     {
         character = this.GetComponent<CharacterController>(); //gets charicter controler
         eyes = this.GetComponent<XRRig>().cameraGameObject; //gets camera(players head)
+        options = GameObject.Find("constData").GetComponent<OptionHolder>();
+        character.height = options.height;
     }
 
     void Start()
     {
-        options = GameObject.Find("constData").GetComponent<OptionHolder>();
-        character.height = options.height;
+        
+        
+        
         updateHeadPos();
         useHeadDirection = options.moveByLooking;
         useRightHand = options.leftHanded;
@@ -43,13 +46,19 @@ public class Movement : LocomotionProvider
     // Update is called once per frame
     void Update()
     {
+        if (character.height <= 0.50f)
+        {
+            options.SetPlayerHeight();
+            character.height = options.height;
+            debugLogConsole.uiLog("player.height: " + character.height);
+        }
         updateHeadPos();
         Move();
     }
 
     void updateHeadPos() // updatex the heads position and the player controler
     {
-        headCenter = (eyes.transform.localPosition + ((eyes.transform.forward * -1) * 0.1f));
+        headCenter = (eyes.transform.localPosition + ((eyes.transform.forward * -1) * 0.1f)+((eyes.transform.up* -1)*0.1f));
         character.center = new Vector3(headCenter.x, (options.height / 2) + character.skinWidth, headCenter.z);
         //test.transform.position = eyes.transform.position + ((eyes.transform.forward * -1) * 0.1f);
     }

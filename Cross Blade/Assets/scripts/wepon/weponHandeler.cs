@@ -7,10 +7,12 @@ public class weponHandeler : MonoBehaviour
     public Side side;
     public Height height;
     public bool active = false;
+    private WeponSound wepSound;
     void Start()
     {
         side = Side.none;
         height = Height.none;
+        wepSound = GetComponent<WeponSound>();
     }
 
     // Update is called once per frame
@@ -23,11 +25,12 @@ public class weponHandeler : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         GameObject myCol = collision.contacts[0].thisCollider.gameObject;
-        if (collision.gameObject.layer.ToString() == "enamyWepon")
+        if (collision.gameObject.layer == LayerMask.NameToLayer("enamyWepon"))
         {
             if (myCol.tag == "blunts")
             {
-
+                this.active = false;
+                wepSound.PlayBlock();
             }
         }
 

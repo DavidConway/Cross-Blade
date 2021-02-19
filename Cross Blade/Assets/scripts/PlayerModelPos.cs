@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerModelPos : MonoBehaviour
 {
+    public bool debug = false;
+    public float debugScale = 0.8f;
+
     [SerializeField]
     private CharacterController player = null;
 
@@ -14,12 +17,25 @@ public class PlayerModelPos : MonoBehaviour
     float modelHeight = 0;
 
 
+    private void Awake()
+    {
+        modelHeight = playerBox.bounds.size.y; //gets hight of model being used
+        float scale = player.height / modelHeight; //gets scale
+        if (!debug)
+        {
+            this.transform.localScale = new Vector3(scale, scale, scale); //applyes scale
+            debugLogConsole.uiLog("scale: " +scale);
+            debugLogConsole.uiLog("player.height: " + player.height);
+            debugLogConsole.uiLog("modelHeight: " + modelHeight);
+        }
+        else
+        {
+            this.transform.localScale = new Vector3(debugScale, debugScale, debugScale); //applyes scale
+        }
+    }
     void Start()
     {
         cam = GameObject.Find("Main Camera");
-        modelHeight = playerBox.bounds.size.y; //gets hight of model being used
-        float scale = player.height / modelHeight; //gets scale
-        this.transform.localScale = new Vector3(scale, scale, scale); //applyes scale
     }
 
     // Update is called once per frame
