@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - weaponRoot
+  - edges
+  - points
+  - blunts
+  - pummels
+  - leftSholder
+  - rightSholder
+  - head
+  - leftSide
+  - rightSide
+  - handel
+  - leftArm
+  - rightArm
+  - leftLeg
+  - rightLeg
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - PostProcessing
+  - player
+  - playerWeapon
+  - envi
+  - test
+  - enamy
+  - chargeBox
+  - hud
+  - enamyWepon
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: ui
+    uniqueID: 817501011
+    locked: 0
