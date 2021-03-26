@@ -10,33 +10,16 @@ using System.IO;
 public class MultipPlayerNodes : NetworkedBehaviour
 {
     public float stopDist = 0.05f;
-
-    private float lastPacket;
     public int gitter = 5;
-    private Queue<Vector3> oldHeadPos = new Queue<Vector3>();
-    private Queue<Vector3> oldLeftPos = new Queue<Vector3>();
-    private Queue<Vector3> oldRightPos = new Queue<Vector3>();
-
-    private Vector3 headTarget,leftTarget,rightTarget;
 
 
     public GameObject playerHead, playerLeft, playerRight,playerBodyC, nodeBody, nodeLeft, nodeRight , local , remote;
 
     NetworkedVarDouble updateTime = new NetworkedVarDouble(new NetworkedVarSettings { WritePermission = NetworkedVarPermission.OwnerOnly });
-    double lastUpdateTime = 0;
     
     void Start()
     {
-        stopDist = 0.05f;
-        gitter = 5;
-        if (IsLocalPlayer)
-        {
-            remote.SetActive(false);
-        }
-        else
-        {
-            local.SetActive(false);
-        }
+
     }
 
     // Update is called once per frame
@@ -45,7 +28,7 @@ public class MultipPlayerNodes : NetworkedBehaviour
         System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
         double currentEpochTime = (System.DateTime.UtcNow - epochStart).TotalMilliseconds; // gets time sins epock
 
-        if (IsOwner)
+        if (IsOwner || GameObject.Find("MPManager") == null)
         {
             //updates pos data
             updateTime.Value = currentEpochTime; // time update takes plays

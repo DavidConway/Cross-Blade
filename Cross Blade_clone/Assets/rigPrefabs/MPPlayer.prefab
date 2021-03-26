@@ -521,20 +521,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1879437429258704386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f73e84b505626e74db5a46503d8df3db, type: 3}
+  m_Script: {fileID: 11500000, guid: f6227b492aaa66645a7f7dc894780909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   localLeft: {fileID: 8914830573655993937}
   localRight: {fileID: 8914830574260319329}
   remoteLeft: {fileID: 3647607807463955204}
   RemoteRight: {fileID: 8505757708059156456}
-  wepons:
-  - {fileID: 7803191646210537386, guid: 27f33406e38f17048a7a59bb1a919db4, type: 3}
-  - {fileID: 6953599141257120970, guid: f4cac91756941074a867a6402a47d40e, type: 3}
-  weponLeft:
-    InternalValue: 0
-  weponRight:
-    InternalValue: 0
+  wepons: []
 --- !u!1 &1920546447477754433
 GameObject:
   m_ObjectHideFlags: 0
@@ -3560,7 +3554,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 9eafa8ff85a705f48abb3b93310dcbcf, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -3987,14 +3981,14 @@ MonoBehaviour:
   m_Script: {fileID: -410691123, guid: 01701b64234b4d523d8045142cbc73fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FixedSendsPerSecond: 20
+  FixedSendsPerSecond: 60.8
   AssumeSyncedSends: 1
   InterpolatePosition: 1
-  SnapDistance: 10
+  SnapDistance: 1
   InterpolateServer: 1
   MinMeters: 0.01
   MinDegrees: 0.1
-  ExtrapolatePosition: 1
+  ExtrapolatePosition: 0
   MaxSendsToExtrapolate: 5
   Channel: 
   EnableRange: 0
@@ -4164,14 +4158,14 @@ MonoBehaviour:
   m_Script: {fileID: -410691123, guid: 01701b64234b4d523d8045142cbc73fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FixedSendsPerSecond: 20
+  FixedSendsPerSecond: 60.8
   AssumeSyncedSends: 1
   InterpolatePosition: 1
-  SnapDistance: 10
+  SnapDistance: 1
   InterpolateServer: 1
   MinMeters: 0.01
   MinDegrees: 0.1
-  ExtrapolatePosition: 1
+  ExtrapolatePosition: 0
   MaxSendsToExtrapolate: 5
   Channel: 
   EnableRange: 0
@@ -4730,9 +4724,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Weight: 1
   m_Data:
-    m_Root: {fileID: 3119210162858376018}
-    m_Mid: {fileID: 3119210162610700860}
-    m_Tip: {fileID: 3119210162498097196}
+    m_Root: {fileID: 3119210162167014077}
+    m_Mid: {fileID: 3119210162858376018}
+    m_Tip: {fileID: 3119210162610700860}
     m_Target: {fileID: 8914830575495705211}
     m_Hint: {fileID: 0}
     m_TargetPositionWeight: 1
@@ -6348,14 +6342,14 @@ MonoBehaviour:
   m_Script: {fileID: -410691123, guid: 01701b64234b4d523d8045142cbc73fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FixedSendsPerSecond: 20
+  FixedSendsPerSecond: 60.8
   AssumeSyncedSends: 1
   InterpolatePosition: 1
-  SnapDistance: 10
+  SnapDistance: 1
   InterpolateServer: 1
   MinMeters: 0.01
   MinDegrees: 0.1
-  ExtrapolatePosition: 1
+  ExtrapolatePosition: 0
   MaxSendsToExtrapolate: 5
   Channel: 
   EnableRange: 0
@@ -6643,7 +6637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8914830573655993950}
   - component: {fileID: 8914830573655993946}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: LeftHand Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6856,7 +6850,7 @@ GameObject:
   - component: {fileID: 8914830573878051572}
   - component: {fileID: 8914830573878051573}
   - component: {fileID: 8914830573878051570}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -7032,7 +7026,7 @@ GameObject:
   - component: {fileID: 8914830573884851138}
   - component: {fileID: 8914830573884851141}
   - component: {fileID: 8914830573884851140}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7185,7 +7179,7 @@ GameObject:
   - component: {fileID: 8914830574087293647}
   - component: {fileID: 8914830574087293646}
   - component: {fileID: 8914830574087293633}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: debugUi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7386,7 +7380,7 @@ GameObject:
   - component: {fileID: 8914830574225759162}
   - component: {fileID: 8914830574225759160}
   - component: {fileID: 8914830574225759163}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7518,7 +7512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8914830574260319342}
   - component: {fileID: 8914830574260319338}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: RightHand Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7834,7 +7828,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8914830574401865615}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: Camera Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7907,7 +7901,7 @@ GameObject:
   - component: {fileID: 8914830574647161667}
   - component: {fileID: 8914830574647161666}
   - component: {fileID: 8914830574647161669}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8034,7 +8028,7 @@ GameObject:
   - component: {fileID: 8914830575087296014}
   - component: {fileID: 8914830575087296015}
   - component: {fileID: 8914830575087296012}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: localXR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8333,7 +8327,7 @@ GameObject:
   - component: {fileID: 8914830575371147900}
   - component: {fileID: 8914830575371147898}
   - component: {fileID: 8914830575371147901}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8406,7 +8400,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8914830575495705211}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: rightRist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8437,7 +8431,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8914830575503203479}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: leftRist
   m_TagString: Untagged
   m_Icon: {fileID: 0}

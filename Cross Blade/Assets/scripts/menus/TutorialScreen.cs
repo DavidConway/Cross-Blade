@@ -10,7 +10,9 @@ public class TutorialScreen : MonoBehaviour
     [SerializeField]
     private TMPro.TMP_Text info;
 
-    string sceanName;                                     
+    string sceanName;
+
+    OptionHolder options = GameObject.Find("constData").GetComponent<OptionHolder>();
 
     LevelInfo testLevel = new LevelInfo("Proto Shorsword", "Proto Shield", "NA", "Void");
     LevelInfo error = new LevelInfo("ERROR", "ERROR", "ERROR", "ERROR");
@@ -51,6 +53,8 @@ public class TutorialScreen : MonoBehaviour
             case 0:
                 info.text = infoMaker(testLevel);
                 sceanName = "VoidTutorial";
+                options.leftWepon = 1;
+                options.rightWepon = 0;
                 break;
             default:
                 info.text = infoMaker(error);

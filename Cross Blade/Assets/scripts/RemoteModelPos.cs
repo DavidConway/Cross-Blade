@@ -15,7 +15,7 @@ public class RemoteModelPos : NetworkedBehaviour
 
     private void Awake()
     {
-        float scale = this.transform.parent.parent.GetComponentInParent<MpScale>().scale.Value;
+        float scale = this.transform.parent.parent.GetComponentInParent<MpStart>().scale.Value;
         this.transform.localScale = new Vector3(scale, scale, scale);
     }
     void Start()

@@ -68,48 +68,50 @@ public class Movement : LocomotionProvider
         Vector3 direction;
         Vector3 rotation;
 
-        InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right, inputHold); // sets hands
-        rightHand = inputHold[0];
-        InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Left, inputHold);
-        leftHand = inputHold[0];
-
-        //gets the hand being used and get the direction the dpad is pointed. if no controler if found direction is zero
-        if (rightHand.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 baseDirection) && useRightHand)
+        if (XRSettings.loadedDeviceName != "MockHMD Display")
         {
-            direction = new Vector3(baseDirection.x, 0, baseDirection.y);
+            InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right, inputHold); // sets hands
+            rightHand = inputHold[0];
+            InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Left, inputHold);
+            leftHand = inputHold[0];
 
-        }
-        else if(leftHand.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 baseDirection2))
-        {
-            direction = new Vector3(baseDirection2.x, 0, baseDirection2.y);
-        }
-        else
-        {
-            direction = Vector3.zero;
-        }
+            //gets the hand being used and get the direction the dpad is pointed. if no controler if found direction is zero
+            if (rightHand.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 baseDirection) && useRightHand)
+            {
+                direction = new Vector3(baseDirection.x, 0, baseDirection.y);
 
-        // checks to see if head or hand should be used for direcrtion
-        if (useRightHand && rightHand.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion baseRotation) && !useHeadDirection )
-        {
-            rotation = new Vector3(0, baseRotation.eulerAngles.y, 0);
+            }
+            else if (leftHand.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 baseDirection2))
+            {
+                direction = new Vector3(baseDirection2.x, 0, baseDirection2.y);
+            }
+            else
+            {
+                direction = Vector3.zero;
+            }
 
-        }
-        else if (!useRightHand && leftHand.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion baseRotation2) && !useHeadDirection)
-        {
-            rotation = new Vector3(0, baseRotation2.eulerAngles.y, 0);
-        }
-        else if (useHeadDirection)
-        {
-            rotation = new Vector3(0, eyes.transform.eulerAngles.y, 0);
-        }
-        else
-        {
-            rotation = Vector3.zero;
-        }
+            // checks to see if head or hand should be used for direcrtion
+            if (useRightHand && rightHand.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion baseRotation) && !useHeadDirection)
+            {
+                rotation = new Vector3(0, baseRotation.eulerAngles.y, 0);
 
-        direction = Quaternion.Euler(rotation) * direction; //cobines direction and rotation
+            }
+            else if (!useRightHand && leftHand.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion baseRotation2) && !useHeadDirection)
+            {
+                rotation = new Vector3(0, baseRotation2.eulerAngles.y, 0);
+            }
+            else if (useHeadDirection)
+            {
+                rotation = new Vector3(0, eyes.transform.eulerAngles.y, 0);
+            }
+            else
+            {
+                rotation = Vector3.zero;
+            }
 
-        character.Move((direction*2)*Time.deltaTime); //applyes speed
+            direction = Quaternion.Euler(rotation) * direction; //cobines direction and rotation
 
+            character.Move((direction * 2) * Time.deltaTime); //applyes speed
+        }
     }
 }

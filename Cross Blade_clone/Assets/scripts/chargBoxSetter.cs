@@ -11,7 +11,8 @@ public class chargBoxSetter : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "handel")
+        print(other.gameObject.name);
+        if (other.gameObject.tag == "handel" && other.gameObject.layer == LayerMask.NameToLayer("playerWeapon"))
         {
             weponHandeler wepon = other.GetComponentInParent<weponHandeler>();
             WeponSound weponSound = other.GetComponentInParent<WeponSound>();
