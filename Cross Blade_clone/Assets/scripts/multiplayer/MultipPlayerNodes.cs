@@ -1,11 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using MLAPI;
 using MLAPI.NetworkedVar;
-using MLAPI.Serialization;
-using System.Security.Policy;
-using System.IO;
 
 public class MultipPlayerNodes : NetworkedBehaviour
 {

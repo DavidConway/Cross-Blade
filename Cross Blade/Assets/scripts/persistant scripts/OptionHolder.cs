@@ -12,6 +12,9 @@ public class OptionHolder : MonoBehaviour
     public bool isHost = false;
     public int leftWepon = 0;
     public int rightWepon = 0;
+    public string ip = "";
+    public int port = 0;
+    public float scale;
     // Start is called before the first frame update
     void Start()
     {

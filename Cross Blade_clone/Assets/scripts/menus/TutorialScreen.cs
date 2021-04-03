@@ -12,12 +12,13 @@ public class TutorialScreen : MonoBehaviour
 
     string sceanName;
 
-    OptionHolder options = GameObject.Find("constData").GetComponent<OptionHolder>();
+    OptionHolder options;
 
     LevelInfo testLevel = new LevelInfo("Proto Shorsword", "Proto Shield", "NA", "Void");
     LevelInfo error = new LevelInfo("ERROR", "ERROR", "ERROR", "ERROR");
     void Start()
     {
+        options = GameObject.Find("constData").GetComponent<OptionHolder>();
         List<string> levels = new List<string> { "testLevel"};
         levelSelect.AddOptions(levels);
 

@@ -15,7 +15,7 @@ public class Movement : LocomotionProvider
 
     private CharacterController character = null;
     private GameObject eyes = null;
-    private Vector3 headCenter;
+    public Vector3 headCenter;
 
    // public GameObject test;
 
@@ -34,7 +34,6 @@ public class Movement : LocomotionProvider
 
     void Start()
     {
-        
         
         
         updateHeadPos();
@@ -58,7 +57,7 @@ public class Movement : LocomotionProvider
 
     void updateHeadPos() // updatex the heads position and the player controler
     {
-        headCenter = (eyes.transform.localPosition + ((eyes.transform.forward * -1) * 0.1f)+((eyes.transform.up* -1)*0.1f));
+        headCenter = (eyes.transform.localPosition + ((eyes.transform.forward * -1) * (0.1f*options.scale))+((eyes.transform.up* -1)* (0.1f * options.scale)));
         character.center = new Vector3(headCenter.x, (options.height / 2) + character.skinWidth, headCenter.z);
         //test.transform.position = eyes.transform.position + ((eyes.transform.forward * -1) * 0.1f);
     }
@@ -109,6 +108,7 @@ public class Movement : LocomotionProvider
                 rotation = Vector3.zero;
             }
 
+            rotation = rotation + new Vector3(0, this.transform.rotation.eulerAngles.y);
             direction = Quaternion.Euler(rotation) * direction; //cobines direction and rotation
 
             character.Move((direction * 2) * Time.deltaTime); //applyes speed

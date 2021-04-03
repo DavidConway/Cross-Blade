@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class MpMenu : MonoBehaviour
 {
     OptionHolder options;
+    SceanLoader loader;
     // Start is called before the first frame update
     void Start()
     {
         options = GameObject.Find("constData").GetComponent<OptionHolder>();
+        loader = GameObject.Find("constData").GetComponent<SceanLoader>();
     }
 
     // Update is called once per frame
@@ -30,7 +32,7 @@ public class MpMenu : MonoBehaviour
 
     public void load()
     {
-        SceneManager.LoadScene("VoidMP", LoadSceneMode.Single);
+        loader.LoadScene("VoidMP");
     }
 
 

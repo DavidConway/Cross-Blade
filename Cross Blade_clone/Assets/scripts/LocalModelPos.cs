@@ -14,7 +14,7 @@ public class LocalModelPos : MonoBehaviour
 
 
     [SerializeField]
-    private CharacterController player = null;
+    private GameObject player = null;
 
     [SerializeField]
     private SkinnedMeshRenderer playerBox = null;
@@ -23,6 +23,9 @@ public class LocalModelPos : MonoBehaviour
     GameObject cam = null;
     float modelHeight = 0;
 
+    private OptionHolder options;
+    float scale;
+
 
 
     private void Awake()
@@ -30,8 +33,8 @@ public class LocalModelPos : MonoBehaviour
 
         if (!debug)
         {
+            options = GameObject.Find("constData").GetComponent<OptionHolder>();
             // this.transform.localScale = new Vector3(scale, scale, scale); //applyes scal
-            float scale;
             try
             {
                 scale = this.transform.parent.parent.GetComponentInParent<MpStart>().scale.Value;
@@ -39,12 +42,12 @@ public class LocalModelPos : MonoBehaviour
             catch
             {
                 modelHeight = playerBox.bounds.size.y; //gets hight of model being used
-                scale = player.height / modelHeight; //gets scale*/
+                scale = options.height / modelHeight; //gets scale*/
             }
             this.transform.localScale = new Vector3(scale, scale, scale);
-
+            options.scale = scale;
             debugLogConsole.uiLog("scale: " +scale);
-            debugLogConsole.uiLog("player.height: " + player.height);
+            debugLogConsole.uiLog("player.height: " + options.height);
             debugLogConsole.uiLog("modelHeight: " + modelHeight);
         }
         else
@@ -62,9 +65,14 @@ public class LocalModelPos : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() 
     {
-        this.transform.position = (player.gameObject.transform.position + player.center) - (new Vector3(0, player.height / 2, 0));
+        if(cam == null) // fail safe
+        {
+            cam = GameObject.Find("Main Camera");
+        }
+        Vector3 neck = player.transform.position + ((player.transform.forward * -1) * (0.1f*scale)) + ((player.transform.up * -1) * (0.1f*scale)); // places model root at players hight down from cam (kinda)
+        this.transform.position = (neck) + (Vector3.down * (options.height - (0.45f * scale)));
         this.transform.rotation = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0);
     }
 }

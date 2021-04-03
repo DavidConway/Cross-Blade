@@ -11,18 +11,17 @@ public class chargBoxSetter : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        print(other.gameObject.name);
         if (other.gameObject.tag == "handel" && other.gameObject.layer == LayerMask.NameToLayer("playerWeapon"))
         {
             weponHandeler wepon = other.GetComponentInParent<weponHandeler>();
             WeponSound weponSound = other.GetComponentInParent<WeponSound>();
             //debugLogConsole.uiLog(other.gameObject.name + " side: " + wepon.side + " height: " + wepon.height);
             //debugLogConsole.uiLog("this" + " side: " + side + " height: " + height);
-            if (!wepon.active || wepon.height != height || wepon.side != side)
+            if (!wepon.active.Value || wepon.height.Value != (int)height || wepon.side.Value != (int)side)
             {
-                wepon.active = true;
-                wepon.height = height;
-                wepon.side = side;
+                wepon.active.Value = true;
+                wepon.height.Value = (int)height;
+                wepon.side.Value = (int)side;
                 weponSound.PlayCharge();
             }
         }

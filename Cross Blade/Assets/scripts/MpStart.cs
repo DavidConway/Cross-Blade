@@ -1,5 +1,6 @@
 ﻿using MLAPI;
 using MLAPI.NetworkedVar;
+using MLAPI.Transports.UNET;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,9 +13,12 @@ public class MpStart : NetworkedBehaviour
     private SkinnedMeshRenderer playerBox = null;
     float modelHeight = 0;
     public bool spawned = false;
+    public GameObject preSpawn;
     public GameObject local;
     public GameObject remote;
     public NetworkedVarFloat scale = new NetworkedVarFloat(new NetworkedVarSettings { WritePermission = NetworkedVarPermission.OwnerOnly }, 0f);
+    public NetworkedVarInt connected = new NetworkedVarInt(new NetworkedVarSettings { WritePermission = NetworkedVarPermission.OwnerOnly }, 0);
+    public bool singel = false;
 
     // Start is called before the first frame update
     private void Awake()
@@ -25,6 +29,8 @@ public class MpStart : NetworkedBehaviour
 
     void Start()
     {
+        preSpawn = GameObject.Find("preConnect");
+
         this.transform.position = new Vector3(0, 0, 0);
         if (IsLocalPlayer || GameObject.Find("MPManager") == null)
         {
@@ -46,13 +52,19 @@ public class MpStart : NetworkedBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (IsServer)
+        {
+            connected.Value = NetworkingManager.Singleton.ConnectedClients.Count;
+        }
         if (!spawned)
         {
-            if (scale.Value != 0)
+            if (scale.Value != 0 && connected.Value >= 2)
             {
+                Destroy(preSpawn.gameObject);
                 player.SetActive(true);
                 spawned = true;
             }
         }
+
     }
 }

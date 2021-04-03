@@ -1,17 +1,20 @@
-﻿using System.Collections;
+﻿using MLAPI;
+using MLAPI.NetworkedVar;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class weponHandeler : MonoBehaviour
+public class weponHandeler : NetworkedBehaviour
 {
-    public Side side;
-    public Height height;
-    public bool active = false;
+    public NetworkedVarInt side = new NetworkedVarInt(new NetworkedVarSettings { WritePermission = NetworkedVarPermission.Everyone }, 0);
+    public NetworkedVarInt height = new NetworkedVarInt(new NetworkedVarSettings { WritePermission = NetworkedVarPermission.Everyone }, 0);
+    public NetworkedVarBool active = new NetworkedVarBool(new NetworkedVarSettings { WritePermission = NetworkedVarPermission.Everyone }, false);
+    public NetworkedVarBool highGround = new NetworkedVarBool(new NetworkedVarSettings { WritePermission = NetworkedVarPermission.Everyone }, false);
     private WeponSound wepSound;
     void Start()
     {
-        side = Side.none;
-        height = Height.none;
+        side.Value = (int)Side.none;
+        height.Value = (int)Height.none;
         wepSound = GetComponent<WeponSound>();
     }
 
@@ -29,7 +32,7 @@ public class weponHandeler : MonoBehaviour
         {
             if (myCol.tag == "blunts")
             {
-                this.active = false;
+                this.active.Value = false;
                 wepSound.PlayBlock();
             }
         }
@@ -49,8 +52,8 @@ public enum Side
 public enum Height
 {
     none,
+    chop,
     top,
     mid,
-    bot,
-    chop
+    bot
 }
