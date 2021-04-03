@@ -173,20 +173,16 @@ public class hitBoxHandeler : MonoBehaviour
                         }
                     }
                 }
-
-                if (this.gameObject.layer == LayerMask.NameToLayer("enamy"))
+                if (playsound)
                 {
-                    if (playsound)
-                    {
-                        wepSound.PlayHit();
-                    }
-                    else
-                    {
-                        wepSound.PlayBlock();
-                    }
+                    wepSound.PlayHit();
                 }
-                 
+                else
+                {
+                    wepSound.PlayBlock();
+                }
             }
+                 
 
         }
         catch(Exception e)

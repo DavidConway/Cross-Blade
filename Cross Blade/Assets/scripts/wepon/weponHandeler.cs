@@ -11,6 +11,8 @@ public class weponHandeler : NetworkedBehaviour
     public NetworkedVarBool active = new NetworkedVarBool(new NetworkedVarSettings { WritePermission = NetworkedVarPermission.Everyone }, false);
     public NetworkedVarBool highGround = new NetworkedVarBool(new NetworkedVarSettings { WritePermission = NetworkedVarPermission.Everyone }, false);
     private WeponSound wepSound;
+    private bool inWepon;
+    private List<GameObject> colidingWepons;
     void Start()
     {
         side.Value = (int)Side.none;
@@ -21,23 +23,39 @@ public class weponHandeler : NetworkedBehaviour
     // Update is called once per frame
     void Update()
     {
-        //debugLogConsole.uiLog(gameObject.name+ " active: " + this.active.ToString() + " side: " +this.side.ToString()+ " height: " + this.height.ToString());
+        if (inWepon)
+        {
+            this.active.Value = false;
+        }
     }
 
     //wepon colider handeler
     private void OnCollisionEnter(Collision collision)
     {
         GameObject myCol = collision.contacts[0].thisCollider.gameObject;
-        if (collision.gameObject.layer == LayerMask.NameToLayer("enamyWepon"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("enamyWepon") && !colidingWepons.Contains(collision.gameObject))
         {
             if (myCol.tag == "blunts")
             {
-                this.active.Value = false;
+                colidingWepons.Add(collision.gameObject);
+                inWepon = true;
                 wepSound.PlayBlock();
             }
         }
-
     }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (colidingWepons.Contains(collision.gameObject))
+        {
+            colidingWepons.Remove(collision.gameObject);
+        }
+        if(colidingWepons.Count == 0)
+        {
+            inWepon = false;
+        }
+    }
+
 
 }
 

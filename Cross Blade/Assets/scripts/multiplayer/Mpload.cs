@@ -75,7 +75,14 @@ public class Mpload : MonoBehaviour
                 }
 
 
-                NetworkingManager.Singleton.StopClient();
+                try
+                {
+                    NetworkingManager.Singleton.StopClient(); // if host disconected this will trow a error as its alredy stoped
+                }
+                catch 
+                {
+
+                }
                 GameObject.Find("constData").GetComponent<SceanLoader>().LoadScene("mainMenu");
             }
         }
