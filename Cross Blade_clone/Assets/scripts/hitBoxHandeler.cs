@@ -6,61 +6,84 @@ using System;
 public class hitBoxHandeler : MonoBehaviour
 {
     public mpHitCounter hitCounter;
+    private bool hitting = false;
+
+    private float hitTime = 0;
+    bool playsound = false;
+    WeponSound wepSound;
+    private bool enamyWep;
+
+  
+
+
+    private void Update()
+    {
+        if (hitTime >= 0)
+        {
+            hitTime -= Time.deltaTime;
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        bool playsound = false;
+        playsound = false;
         GameObject myCol = collision.contacts[0].thisCollider.gameObject;
         GameObject colitionPoint = collision.collider.gameObject;
-        WeponSound wepSound = colitionPoint.GetComponentInParent<WeponSound>();
+        wepSound = colitionPoint.GetComponentInParent<WeponSound>();
         try
         {
-            weponHandeler wepon = collision.gameObject.GetComponentInParent<weponHandeler>();
-            //debugLogConsole.uiLog(colitionPoint.gameObject.tag + " "+ wepon.active.ToString());
-            if (wepon.active.Value)
-            {
-                playsound = true;
-                //if attack is from high ground treat it as if it is freom one height up
-                if (wepon.highGround.Value)
+            if (hitTime <= 0) {
+                weponHandeler wepon = collision.gameObject.GetComponentInParent<weponHandeler>();
+                if (wepon.active.Value && !wepon.inWepon)
                 {
-                    wepon.height.Value -= 1;
-                    if(wepon.height.Value <= 0)
+                    if (wepon.highGround.Value)
                     {
-                        wepon.height.Value = 1;
+                        wepon.height.Value -= 1;
+                        if (wepon.height.Value <= 0)
+                        {
+                            wepon.height.Value = 1;
+                        }
                     }
-                }
 
-                if (collision.collider.gameObject.layer == LayerMask.NameToLayer("enamyWepon") && this.gameObject.layer == LayerMask.NameToLayer("player"))
-                {
-                    if (colitionPoint.tag != "blunts") //the blut is used only defensively
+                    enamyWep = false;
+                    if (collision.collider.gameObject.layer == LayerMask.NameToLayer("enamyWepon"))
                     {
-                        wepon.active.Value = false;
-                        
+                        enamyWep = true;
+                    }
 
-                        //debugLogConsole.uiLog(wepon.gameObject.name + " deactive " + myCol.tag + " " + colitionPoint.tag);
-                        if (colitionPoint.tag == "pummels") // pummel has a saepecel effect
+                    if (colitionPoint.tag != "blunts") // blunts is defensive only
+                    {
+
+                        if (enamyWep)
                         {
-                            /*if (myCol.tag == "head")//stun
+                            wepon.active.Value = false;
+                        }
+
+                        hitting = true; // make sure only one hit is being checked at a time;
+
+                        if (colitionPoint.tag == "points")
+                        {
+                            hit();
+                            return;
+                        }
+
+                        else if (colitionPoint.tag == "edges") //if blade is hit
+                        {
+                            //if attack is from high ground treat it as if it is freom one height up
+                            if (wepon.highGround.Value)
                             {
-                                debugLogConsole.uiLog("headBash");
+                                wepon.height.Value -= 1;
+                                if (wepon.height.Value <= 0)
+                                {
+                                    wepon.height.Value = 1;
+                                }
                             }
-                            else if (myCol.tag == "leftSide" || myCol.tag == "rightSide") //push
-                            {
-                                debugLogConsole.uiLog(myCol.tag + " bunt");
 
-                            }*/
-                            playsound = false;
-                        }
-                        else if (colitionPoint.tag == "points")
-                        {
-                            hitCounter.countHit();
-                        }
-                        else
-                        {
                             if (wepon.side.Value != (int)Side.none && wepon.height.Value != (int)Height.none)//makes sure wepon is active
                             {
-                                if (wepon.side.Value == (int)Side.left) // checks side is active
+                                if (wepon.side.Value == (int)Side.left)
                                 {
+
                                     switch (wepon.height.Value) // checks hight active
                                     {
                                         case (int)Height.top:
@@ -69,14 +92,13 @@ public class hitBoxHandeler : MonoBehaviour
                                                    || myCol.tag == "head" || myCol.tag == "leftSholder"
                                                    || myCol.tag == "rightSholder" || myCol.tag == "rightSide")
                                                 {
-                                                    hitCounter.countHit();
-                                                    break;
+                                                    hit();
+                                                    return;
                                                 }
                                                 else
                                                 {
-                                                    debugLogConsole.uiLog("top left slash failed");
-                                                    playsound = false;
-                                                    break;
+                                                    block();
+                                                    return;
                                                 }
 
                                             }
@@ -85,30 +107,31 @@ public class hitBoxHandeler : MonoBehaviour
                                                 if (myCol.tag == "rightArm" || myCol.tag == "head" ||
                                                     myCol.tag == "rightSide" || myCol.tag == "rightLeg")
                                                 {
-                                                    hitCounter.countHit();
-                                                    break;
+                                                    hit();
+                                                    return;
                                                 }
                                                 else
                                                 {
-                                                    debugLogConsole.uiLog("mid left slash failed");
-                                                    playsound = false;
-                                                    break;
+                                                    block();
+                                                    return;
                                                 }
                                             }
                                         case (int)Height.bot:
-                                            if (myCol.tag == "rightArm" || myCol.tag == "rightSide" ||
-                                                myCol.tag == "rightLeg")
                                             {
-                                                hitCounter.countHit();
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                debugLogConsole.uiLog("bot left slash failed");
-                                                playsound = false;
-                                                break;
+                                                if (myCol.tag == "rightArm" || myCol.tag == "rightSide" ||
+                                                    myCol.tag == "rightLeg")
+                                                {
+                                                    hit();
+                                                    return;
+                                                }
+                                                else
+                                                {
+                                                    block();
+                                                    break;
+                                                }
                                             }
                                     }
+
                                 }
 
                                 else if (wepon.side.Value == (int)Side.right)
@@ -122,14 +145,13 @@ public class hitBoxHandeler : MonoBehaviour
                                                    || myCol.tag == "head" || myCol.tag == "leftSholder"
                                                    || myCol.tag == "rightSholder" || myCol.tag == "leftSide")
                                                 {
-                                                    hitCounter.countHit(); 
-                                                    break;
+                                                    hit();
+                                                    return;
                                                 }
                                                 else
                                                 {
-                                                    debugLogConsole.uiLog("top right slash failed");
-                                                    playsound = false;
-                                                    break;
+                                                    block();
+                                                    return;
                                                 }
 
                                             }
@@ -138,56 +160,90 @@ public class hitBoxHandeler : MonoBehaviour
                                                 if (myCol.tag == "leftArm" || myCol.tag == "head" ||
                                                     myCol.tag == "leftSide" || myCol.tag == "leftLeg")
                                                 {
-                                                    hitCounter.countHit();
-                                                    break;
+                                                    hit();
+                                                    return;
                                                 }
                                                 else
                                                 {
-                                                    debugLogConsole.uiLog("mid right slash failed");
-                                                    playsound = false;
-                                                    break;
+                                                    block();
+                                                    return;
                                                 }
                                             }
                                         case (int)Height.bot:
-                                            if (myCol.tag == "leftArm" || myCol.tag == "leftSide" ||
-                                                myCol.tag == "leftLeg")
                                             {
-                                                hitCounter.countHit();
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                debugLogConsole.uiLog("bot right slash failed");
-                                                playsound = false;
-                                                break;
+                                                if (myCol.tag == "leftArm" || myCol.tag == "leftSide" ||
+                                                    myCol.tag == "leftLeg")
+                                                {
+                                                    hit();
+                                                    return;
+                                                }
+                                                else
+                                                {
+                                                    block();
+                                                    return;
+                                                }
                                             }
                                     }
+
                                 }
 
-                                else if (wepon.side.Value == (int)Side.chop && wepon.height.Value == (int)Height.chop)
+                                else if (wepon.side.Value == (int)Side.chop)
                                 {
-                                    hitCounter.countHit();
-
+                                    if (myCol.tag == "head" || myCol.tag == "leftArm" || myCol.tag == "rightArm" ||
+                                       myCol.tag == "leftSholder" || myCol.tag == "rightSholder")
+                                    {
+                                        hit();
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        block();
+                                        return;
+                                    }
                                 }
                             }
                         }
+
+                        hitting = false;
                     }
-                }
-                if (playsound)
-                {
-                    wepSound.PlayHit();
-                }
-                else
-                {
-                    wepSound.PlayBlock();
+
                 }
             }
-                 
+        }
 
-        }
-        catch(Exception e)
+        catch
         {
-            Debug.Log(e);
         }
+    }
+
+    void playSound()
+    {
+        if (playsound)
+        {
+            wepSound.PlayHit();
+        }
+        else
+        {
+            wepSound.PlayBlock();
+        }
+    }
+
+    void hit()
+    {
+        playsound = true;
+        if (enamyWep)
+        {
+            hitCounter.countHit();
+        }
+        hitTime = 1;
+        hitting = false;
+        playSound();
+    }
+
+    void block()
+    {
+        playsound = false;
+        hitting = false;
+        playSound();
     }
 }

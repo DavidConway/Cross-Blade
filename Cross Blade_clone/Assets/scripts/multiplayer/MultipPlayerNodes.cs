@@ -8,7 +8,7 @@ public class MultipPlayerNodes : NetworkedBehaviour
     public int gitter = 5;
 
 
-    public GameObject playerHead, playerLeft, playerRight,playerBodyC, nodeBody, nodeLeft, nodeRight , local , remote;
+    public GameObject playerHead, playerLeft, playerRight,playerBodyC,nodeHead, nodeBody, nodeLeft, nodeRight , local , remote;
 
     NetworkedVarDouble updateTime = new NetworkedVarDouble(new NetworkedVarSettings { WritePermission = NetworkedVarPermission.OwnerOnly });
     
@@ -27,6 +27,9 @@ public class MultipPlayerNodes : NetworkedBehaviour
         {
             //updates pos data
             updateTime.Value = currentEpochTime; // time update takes plays
+
+            nodeHead.transform.position = playerHead.transform.position;
+            nodeHead.transform.position = playerHead.transform.position;
 
             nodeBody.transform.position = playerBodyC.transform.position;
             nodeBody.transform.rotation = playerBodyC.transform.rotation;

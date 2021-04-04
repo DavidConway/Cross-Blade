@@ -31,7 +31,7 @@ public class Mpload : MonoBehaviour
         if (options.isHost)
         {
 
-            // geives a unic port so multiple hosts can be done from one network
+            // gives a unic port so multiple hosts can be done from one network
             int port = getPort();
             connection.ConnectPort = port;
             connection.ServerListenPort = port;
@@ -40,6 +40,7 @@ public class Mpload : MonoBehaviour
         }
         else
         {
+            // gets inputed port is cliant
             connection.ConnectPort = options.port;
             connection.ServerListenPort = options.port;
             connection.ConnectAddress = options.ip;
@@ -49,6 +50,7 @@ public class Mpload : MonoBehaviour
 
     private int getPort()
     {
+        // random num
         int i;
         UnityEngine.Random.InitState((int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds);
         i = UnityEngine.Random.Range(1000,65000);
@@ -64,17 +66,6 @@ public class Mpload : MonoBehaviour
            
             if (Time.time - startTime > 5)
             {
-                //checks if conection fail was a lack of relay
-                if (testPing.isDone)
-                {
-                    print("ding");
-                }
-                else
-                {
-                    print("dong");
-                }
-
-
                 try
                 {
                     NetworkingManager.Singleton.StopClient(); // if host disconected this will trow a error as its alredy stoped
@@ -86,5 +77,19 @@ public class Mpload : MonoBehaviour
                 GameObject.Find("constData").GetComponent<SceanLoader>().LoadScene("mainMenu");
             }
         }
+
+        else
+        {
+            if (!testPing.isDone)
+            {
+                if (Time.time - startTime > 5)
+                {
+                    NetworkingManager.Singleton.StopHost(); // if cant connect to relay
+                    GameObject.Find("constData").GetComponent<SceanLoader>().LoadScene("mainMenu");
+                }
+            }
+          
+        }
     }
+
 }

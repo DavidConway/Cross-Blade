@@ -17,7 +17,7 @@ public class chargBoxSetter : MonoBehaviour
             WeponSound weponSound = other.GetComponentInParent<WeponSound>();
             //debugLogConsole.uiLog(other.gameObject.name + " side: " + wepon.side + " height: " + wepon.height);
             //debugLogConsole.uiLog("this" + " side: " + side + " height: " + height);
-            if (!wepon.active.Value || wepon.height.Value != (int)height || wepon.side.Value != (int)side)
+            if ((!wepon.active.Value || wepon.height.Value != (int)height || wepon.side.Value != (int)side) && !wepon.inWepon)
             {
                 wepon.active.Value = true;
                 wepon.height.Value = (int)height;

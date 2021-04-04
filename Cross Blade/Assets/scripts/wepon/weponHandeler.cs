@@ -11,8 +11,10 @@ public class weponHandeler : NetworkedBehaviour
     public NetworkedVarBool active = new NetworkedVarBool(new NetworkedVarSettings { WritePermission = NetworkedVarPermission.Everyone }, false);
     public NetworkedVarBool highGround = new NetworkedVarBool(new NetworkedVarSettings { WritePermission = NetworkedVarPermission.Everyone }, false);
     private WeponSound wepSound;
-    private bool inWepon;
-    private List<GameObject> colidingWepons;
+
+    public bool inWepon;
+    public bool hitting;
+
     void Start()
     {
         side.Value = (int)Side.none;
@@ -30,30 +32,31 @@ public class weponHandeler : NetworkedBehaviour
     }
 
     //wepon colider handeler
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         GameObject myCol = collision.contacts[0].thisCollider.gameObject;
-        if (collision.gameObject.layer == LayerMask.NameToLayer("enamyWepon") && !colidingWepons.Contains(collision.gameObject))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("enamyWepon") || collision.gameObject.layer == LayerMask.NameToLayer("playerWepon"))
         {
             if (myCol.tag == "blunts")
             {
-                colidingWepons.Add(collision.gameObject);
+                if(inWepon == false && active.Value)
+                {
+                    active.Value = false;
+                    wepSound.PlayBlock();
+                }
                 inWepon = true;
-                wepSound.PlayBlock();
+                
             }
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (colidingWepons.Contains(collision.gameObject))
-        {
-            colidingWepons.Remove(collision.gameObject);
-        }
-        if(colidingWepons.Count == 0)
-        {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("enamyWepon") || collision.gameObject.layer == LayerMask.NameToLayer("playerWepon")){
             inWepon = false;
         }
+
+
     }
 
 

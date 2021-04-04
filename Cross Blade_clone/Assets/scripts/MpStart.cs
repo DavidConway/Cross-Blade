@@ -43,8 +43,6 @@ public class MpStart : NetworkedBehaviour
         {
             Destroy(local);//destroy uneded local
         }
-        //GameObject go =Instantiate(player, this.transform);
-        //go.transform.localPosition = new Vector3(0, 0, 0);
         
         
     }

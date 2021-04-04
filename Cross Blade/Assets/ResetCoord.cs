@@ -22,12 +22,12 @@ public class ResetCoord : NetworkedBehaviour
             this.transform.GetChild(0).transform.localPosition = new Vector3(offcet.x, 0, offcet.y);
             if (IsHost)
             {
-                this.transform.position = new Vector3(0, 0.60f, -4);
+                this.transform.position = new Vector3(0, 0.60f, -3);
                 this.transform.eulerAngles = new Vector3(0, 0, 0);
             }
             else
             {
-                this.transform.position = new Vector3(0, 0.60f,4 );
+                this.transform.position = new Vector3(0, 0.60f,3 );
                 this.transform.eulerAngles = new Vector3(0, 180, 0);
             }
         }

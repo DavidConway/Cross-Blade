@@ -58,27 +58,22 @@ public class MultiplayerWeponStart : NetworkedBehaviour
             }
             if (IsLocalPlayer && weponSpawned.Value == 1) // phase 2 attache wepon to hand
             {
-                left = GetNetworkedObject(leftId.Value).gameObject;
+                left = GetNetworkedObject(leftId.Value).gameObject; // gets the wepons player owns
                 right = GetNetworkedObject(rightId.Value).gameObject;
 
                 left.transform.parent = localLeft.transform;
-                right.transform.parent = localRight.transform;
-                left.transform.localPosition = new Vector3(0, 0, 0);
-                right.transform.localPosition = new Vector3(0, 0, 0);
-                Quaternion zeroRote = new Quaternion(0, 0, 0, 0);
+                right.transform.parent = localRight.transform; // sets it parent
+
+                left.transform.localPosition = new Vector3(0, 0, 0); // moves it to hand
+                right.transform.localPosition = new Vector3(0, 0, 0)
+                    ;
+                right.transform.localScale = new Vector3(-1, 1, 1); // mirros in right hand
+
+                Quaternion zeroRote = new Quaternion(0, 0, 0, 0); // makes sure there is no odd rotation
                 zeroRote.eulerAngles = new Vector3(0, 0, 0);
                 left.transform.localRotation = zeroRote;
                 right.transform.localRotation = zeroRote;
-                /*if (!IsHost) //need to rotate wepon if not host
-                {
-                    right.transform.localScale = new Vector3(-1, 1, 1); // mirros in right hand
-                    right.transform.localScale = new Vector3(-1, 1, 1); // mirros in right hand
-                }
-                else
-                {
-                    right.transform.localScale = new Vector3(-1, 1, -1); // mirros in right hand
-                    right.transform.localScale = new Vector3(1, 1, -1); // mirros in right hand
-                }*/
+
 
 
 
@@ -98,10 +93,15 @@ public class MultiplayerWeponStart : NetworkedBehaviour
             {
                 left = Instantiate(wepons[options.leftWepon],localLeft.transform);
                 right = Instantiate(wepons[options.rightWepon],localRight.transform);
+                left.transform.parent = localLeft.transform;
+                right.transform.parent = localRight.transform;
                 left.transform.localPosition = new Vector3(0, 0, 0);
                 right.transform.localPosition = new Vector3(0, 0, 0);
-                right.transform.localScale = new Vector3(-1, 1, 1); // mirros in left hand
-                weponSpawned.Value = 1;
+                right.transform.localScale = new Vector3(-1, 1, 1); // mirros in right hand
+                Quaternion zeroRote = new Quaternion(0, 0, 0, 0);
+                zeroRote.eulerAngles = new Vector3(0, 0, 0);
+                left.transform.localRotation = zeroRote;
+                right.transform.localRotation = zeroRote;
             }
         }
     }

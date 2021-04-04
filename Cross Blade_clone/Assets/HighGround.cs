@@ -40,7 +40,7 @@ public class HighGround : MonoBehaviour
     {
         foreach(GameObject i in GameObject.FindObjectsOfType(typeof(GameObject)))
         {
-            if(i.name == "body")
+            if(i.name == "head")
             {
                 if(i.transform.parent.parent.gameObject != this.transform.parent.parent.gameObject)
                 {

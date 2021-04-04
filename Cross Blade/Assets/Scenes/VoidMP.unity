@@ -30369,7 +30369,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187027, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187027, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
@@ -31613,7 +31613,7 @@ MonoBehaviour:
   RunInBackground: 1
   LogLevel: 1
   NetworkConfig:
-    ProtocolVersion: 0
+    ProtocolVersion: 109
     NetworkTransport: {fileID: 2142122012}
     RegisteredScenes:
     - VoidMP

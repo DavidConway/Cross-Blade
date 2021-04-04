@@ -279,7 +279,6 @@ GameObject:
   - component: {fileID: 456353947563057582}
   - component: {fileID: 5106142507665604703}
   - component: {fileID: 706195627221005096}
-  - component: {fileID: 9114136571756804398}
   m_Layer: 10
   m_Name: model
   m_TagString: Untagged
@@ -11585,26 +11584,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6604309087086677629}
   m_Mesh: {fileID: 0}
---- !u!114 &9114136571756804398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6604309087086677629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cd8700d673b2e1498dcb41bc750111c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  side:
-    InternalValue: 0
-  height:
-    InternalValue: 0
-  active:
-    InternalValue: 0
-  highGround:
-    InternalValue: 0
 --- !u!1 &6953599141257120970
 GameObject:
   m_ObjectHideFlags: 0
@@ -11634,14 +11613,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6953599141257120970}
-  m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1090494517428150330}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!54 &7295042476051567323
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11678,6 +11657,8 @@ MonoBehaviour:
     InternalValue: 0
   highGround:
     InternalValue: 0
+  inWepon: 0
+  hitting: 0
 --- !u!82 &3422866060429460421
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11786,9 +11767,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d654909aea7d76b4fbfaad0512a070c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitSounds: []
+  hitSounds:
+  - {fileID: 8300000, guid: 54be87923910a8948b385e9809251e8e, type: 3}
   chargeSound: {fileID: 8300000, guid: 9898b83d3ba6a184dbd92d8f307f51cc, type: 3}
-  blockSounds: []
+  blockSounds:
+  - {fileID: 8300000, guid: db81388824e56bf45992853e819e3c95, type: 3}
+  - {fileID: 8300000, guid: 714bd2146fd68904d9c486acdfc7c006, type: 3}
+  - {fileID: 8300000, guid: 79fcfe95213bdfc4db9a3de6747d9a33, type: 3}
 --- !u!114 &7707761682232489052
 MonoBehaviour:
   m_ObjectHideFlags: 0
