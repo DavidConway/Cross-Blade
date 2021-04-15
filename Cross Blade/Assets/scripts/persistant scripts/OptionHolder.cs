@@ -15,6 +15,9 @@ public class OptionHolder : MonoBehaviour
     public string ip = "";
     public int port = 0;
     public float scale;
+    public int hitTo = 0;
+    public Modes mode = Modes.FirstTo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,4 +33,10 @@ public class OptionHolder : MonoBehaviour
 
     // Update is called once per frame
 
+}
+
+public enum Modes
+{
+    FirstTo,
+    BestOf
 }

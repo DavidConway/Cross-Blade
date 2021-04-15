@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class Persist : MonoBehaviour
 {
-    // Start is called before the first frame update
+    static GameObject constDataSingelton;
     void Start()
     {
-        DontDestroyOnLoad(this);
+        if (constDataSingelton == null)
+        {
+            DontDestroyOnLoad(this);
+            constDataSingelton = this.gameObject;
+        }
+        else if(constDataSingelton != this.gameObject)
+        {
+            Destroy(this.gameObject);
+        }
+        
     }
 }

@@ -102,6 +102,7 @@ public class MultiplayerWeponStart : NetworkedBehaviour
                 zeroRote.eulerAngles = new Vector3(0, 0, 0);
                 left.transform.localRotation = zeroRote;
                 right.transform.localRotation = zeroRote;
+                weponSpawned.Value = 1;
             }
         }
     }

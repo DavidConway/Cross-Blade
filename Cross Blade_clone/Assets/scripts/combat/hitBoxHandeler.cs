@@ -12,6 +12,7 @@ public class hitBoxHandeler : MonoBehaviour
     bool playsound = false;
     WeponSound wepSound;
     private bool enamyWep;
+    public enamyTraking enamy;
 
   
 
@@ -34,15 +35,52 @@ public class hitBoxHandeler : MonoBehaviour
         {
             if (hitTime <= 0) {
                 weponHandeler wepon = collision.gameObject.GetComponentInParent<weponHandeler>();
+
                 if (wepon.active.Value && !wepon.inWepon)
                 {
-                    if (wepon.highGround.Value)
+                    if (enamy.checkHighGround())
                     {
                         wepon.height.Value -= 1;
                         if (wepon.height.Value <= 0)
                         {
                             wepon.height.Value = 1;
                         }
+                    }
+
+                    switch (enamy.checkSide())
+                    {
+                        case Pos.Back: //flip
+                            {
+                                if(wepon.side.Value == (int)Side.left)
+                                {
+                                    wepon.side.Value = (int)Side.right;
+                                }
+                                else if (wepon.side.Value == (int)Side.right)
+                                {
+                                    wepon.side.Value = (int)Side.left;
+                                }
+                                break;
+                            }
+                        case Pos.Left: //always act as if its coming from the right
+                            {
+                                if(wepon.side.Value == (int)Side.left)
+                                {
+                                    wepon.side.Value = (int)Side.right;
+                                }
+                                break;
+                            }
+                        case Pos.Right: //always act as if its coming from the left
+                            {
+                                if (wepon.side.Value == (int)Side.right)
+                                {
+                                    wepon.side.Value = (int)Side.left;
+                                }
+                                break;
+                            }
+                        case Pos.Front: // do nothing
+                            {
+                                break;
+                            }
                     }
 
                     enamyWep = false;
@@ -63,6 +101,7 @@ public class hitBoxHandeler : MonoBehaviour
 
                         if (colitionPoint.tag == "points")
                         {
+                            debugLogConsole.uiLog("HIT Point ");
                             hit();
                             return;
                         }
@@ -92,11 +131,13 @@ public class hitBoxHandeler : MonoBehaviour
                                                    || myCol.tag == "head" || myCol.tag == "leftSholder"
                                                    || myCol.tag == "rightSholder" || myCol.tag == "rightSide")
                                                 {
+                                                    debugLogConsole.uiLog("HIT " + (Side)wepon.side.Value + " : " + (Height)wepon.height.Value + " : " + myCol.tag + " : " +  Enum.GetName(typeof(Pos), enamy.checkSide()));
                                                     hit();
                                                     return;
                                                 }
                                                 else
                                                 {
+                                                    debugLogConsole.uiLog("Miss " + (Side)wepon.side.Value + " : " + (Height)wepon.height.Value + " : " + myCol.tag + " : " + Enum.GetName(typeof(Pos), enamy.checkSide()));
                                                     block();
                                                     return;
                                                 }
@@ -107,11 +148,13 @@ public class hitBoxHandeler : MonoBehaviour
                                                 if (myCol.tag == "rightArm" || myCol.tag == "head" ||
                                                     myCol.tag == "rightSide" || myCol.tag == "rightLeg")
                                                 {
+                                                    debugLogConsole.uiLog("HIT " + (Side)wepon.side.Value + " : " + (Height)wepon.height.Value + " : " + myCol.tag + " : " + Enum.GetName(typeof(Pos), enamy.checkSide()));
                                                     hit();
                                                     return;
                                                 }
                                                 else
                                                 {
+                                                    debugLogConsole.uiLog("Miss " + (Side)wepon.side.Value + " : " + (Height)wepon.height.Value + " : " + myCol.tag + " : " + Enum.GetName(typeof(Pos), enamy.checkSide()));
                                                     block();
                                                     return;
                                                 }
@@ -121,11 +164,13 @@ public class hitBoxHandeler : MonoBehaviour
                                                 if (myCol.tag == "rightArm" || myCol.tag == "rightSide" ||
                                                     myCol.tag == "rightLeg")
                                                 {
+                                                    debugLogConsole.uiLog("HIT " + (Side)wepon.side.Value + " : " + (Height)wepon.height.Value + " : " + myCol.tag + " : " + Enum.GetName(typeof(Pos), enamy.checkSide()));
                                                     hit();
                                                     return;
                                                 }
                                                 else
                                                 {
+                                                    debugLogConsole.uiLog("Miss " + (Side)wepon.side.Value + " : " + (Height)wepon.height.Value + " : " + myCol.tag + " : " + Enum.GetName(typeof(Pos), enamy.checkSide()));
                                                     block();
                                                     break;
                                                 }
@@ -145,11 +190,13 @@ public class hitBoxHandeler : MonoBehaviour
                                                    || myCol.tag == "head" || myCol.tag == "leftSholder"
                                                    || myCol.tag == "rightSholder" || myCol.tag == "leftSide")
                                                 {
+                                                    debugLogConsole.uiLog("HIT " + (Side)wepon.side.Value + " : " + (Height)wepon.height.Value + " : " + myCol.tag + " : " + Enum.GetName(typeof(Pos), enamy.checkSide()));
                                                     hit();
                                                     return;
                                                 }
                                                 else
                                                 {
+                                                    debugLogConsole.uiLog("Miss " + (Side)wepon.side.Value + " : " + (Height)wepon.height.Value + " : " + myCol.tag + " : " + Enum.GetName(typeof(Pos), enamy.checkSide()));
                                                     block();
                                                     return;
                                                 }
@@ -160,11 +207,13 @@ public class hitBoxHandeler : MonoBehaviour
                                                 if (myCol.tag == "leftArm" || myCol.tag == "head" ||
                                                     myCol.tag == "leftSide" || myCol.tag == "leftLeg")
                                                 {
+                                                    debugLogConsole.uiLog("HIT " + (Side)wepon.side.Value + " : " + (Height)wepon.height.Value + " : " + myCol.tag + " : " + Enum.GetName(typeof(Pos), enamy.checkSide()));
                                                     hit();
                                                     return;
                                                 }
                                                 else
                                                 {
+                                                    debugLogConsole.uiLog("Miss " + (Side)wepon.side.Value + " : " + (Height)wepon.height.Value + " : " + myCol.tag + " : " + Enum.GetName(typeof(Pos), enamy.checkSide()));
                                                     block();
                                                     return;
                                                 }
@@ -174,11 +223,13 @@ public class hitBoxHandeler : MonoBehaviour
                                                 if (myCol.tag == "leftArm" || myCol.tag == "leftSide" ||
                                                     myCol.tag == "leftLeg")
                                                 {
+                                                    debugLogConsole.uiLog("HIT " + (Side)wepon.side.Value + " : " + (Height)wepon.height.Value + " : " + myCol.tag + " : " + Enum.GetName(typeof(Pos), enamy.checkSide()));
                                                     hit();
                                                     return;
                                                 }
                                                 else
                                                 {
+                                                    debugLogConsole.uiLog("Miss " + (Side)wepon.side.Value + " : " + (Height)wepon.height.Value + " : " + myCol.tag + " : " + Enum.GetName(typeof(Pos), enamy.checkSide()));
                                                     block();
                                                     return;
                                                 }
@@ -192,11 +243,13 @@ public class hitBoxHandeler : MonoBehaviour
                                     if (myCol.tag == "head" || myCol.tag == "leftArm" || myCol.tag == "rightArm" ||
                                        myCol.tag == "leftSholder" || myCol.tag == "rightSholder")
                                     {
+                                        debugLogConsole.uiLog("HIT " + (Side)wepon.side.Value + " : " + (Height)wepon.height.Value + " : " + myCol.tag + " : " + Enum.GetName(typeof(Pos), enamy.checkSide()));
                                         hit();
                                         return;
                                     }
                                     else
                                     {
+                                        debugLogConsole.uiLog("Miss " + (Side)wepon.side.Value + " : " + (Height)wepon.height.Value + " : " + myCol.tag + " : " + Enum.GetName(typeof(Pos), enamy.checkSide()));
                                         block();
                                         return;
                                     }

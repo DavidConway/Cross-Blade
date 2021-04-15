@@ -14,7 +14,10 @@ public class MultipPlayerNodes : NetworkedBehaviour
     
     void Start()
     {
-
+        if (IsLocalPlayer)
+        {
+            nodeHead.layer = LayerMask.NameToLayer("player"); //needed to stop errors in enamy detection
+        }
     }
 
     // Update is called once per frame

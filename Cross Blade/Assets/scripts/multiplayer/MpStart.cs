@@ -37,6 +37,7 @@ public class MpStart : NetworkedBehaviour
             options = GameObject.Find("constData").GetComponent<OptionHolder>();
             modelHeight = playerBox.bounds.size.y; //gets hight of model being used
             scale.Value = options.height / modelHeight; //gets scale
+            changeLayers(remote.transform.parent.gameObject, "player");//needed to holp find enamy
             Destroy(remote);
         }
         else
@@ -58,11 +59,21 @@ public class MpStart : NetworkedBehaviour
         {
             if (scale.Value != 0 && connected.Value >= 2)
             {
-                Destroy(preSpawn.gameObject);
+                //Destroy(preSpawn.gameObject)
+                preSpawn.gameObject.SetActive(false);
                 player.SetActive(true);
                 spawned = true;
             }
         }
 
+    }
+
+    void changeLayers(GameObject obj, string layer) // changes objects layer then iterates troy eatch child and dose the same
+    {
+        obj.layer = LayerMask.NameToLayer(layer);
+        for (int i = 0; i < obj.transform.childCount; i++)
+        {
+            changeLayers(obj.transform.GetChild(i).gameObject, layer);
+        }
     }
 }

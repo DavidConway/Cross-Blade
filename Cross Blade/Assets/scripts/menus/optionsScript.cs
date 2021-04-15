@@ -15,15 +15,16 @@ public class optionsScript : MonoBehaviour
     [SerializeField]
     TMPro.TMP_Text height;
     [SerializeField]
-    OptionHolder options;
-    [SerializeField]
     Movement current;
+    OptionHolder options;
     // Start is called before the first frame update
     void Start()
     {
+        options = GameObject.Find("constData").GetComponent<OptionHolder>();
         current = GameObject.Find("XR Rig").GetComponent<Movement>();
         leftHand.isOn = options.leftHanded;
         moveDirection.isOn = options.moveByLooking;
+
 
         leftHand.onValueChanged.AddListener(delegate { leftHandToggel(leftHand); });
         moveDirection.onValueChanged.AddListener(delegate { moveChange(moveDirection);});

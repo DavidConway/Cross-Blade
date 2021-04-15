@@ -14,6 +14,7 @@ public class Mpload : MonoBehaviour
     public GameObject player;
     public float startTime;
     UnityEngine.Ping testPing;
+    private bool started = false;
 
     // Start is called before the first frame update
     private void Awake()
@@ -63,18 +64,9 @@ public class Mpload : MonoBehaviour
     {
         if(!NetworkingManager.Singleton.IsConnectedClient && !NetworkingManager.Singleton.IsServer)
         {
-           
             if (Time.time - startTime > 5)
             {
-                try
-                {
-                    NetworkingManager.Singleton.StopClient(); // if host disconected this will trow a error as its alredy stoped
-                }
-                catch 
-                {
-
-                }
-                GameObject.Find("constData").GetComponent<SceanLoader>().LoadScene("mainMenu");
+                ConnectingMessage.ConnectionFailed("Can not connect to Host");
             }
         }
 
@@ -84,11 +76,24 @@ public class Mpload : MonoBehaviour
             {
                 if (Time.time - startTime > 5)
                 {
-                    NetworkingManager.Singleton.StopHost(); // if cant connect to relay
-                    GameObject.Find("constData").GetComponent<SceanLoader>().LoadScene("mainMenu");
+                    ConnectingMessage.ConnectionFailed("Can not connect to Relay Server");
                 }
             }
-          
+
+            if (!started)
+            {
+                if(NetworkingManager.Singleton.ConnectedClientsList.Count == 2)
+                {
+                    started = true;
+                }
+            }
+            else
+            {
+                if(NetworkingManager.Singleton.ConnectedClientsList.Count != 2)
+                {
+                    ConnectingMessage.ConnectionFailed("Lost connection to Other Player");
+                }
+            }
         }
     }
 

@@ -19,6 +19,7 @@ TagManager:
   - rightArm
   - leftLeg
   - rightLeg
+  - mpNode
   layers:
   - Default
   - TransparentFX
@@ -39,10 +40,10 @@ TagManager:
   - enamyWepon
   - XRRig
   - ModelBox
-  - 
-  - 
-  - 
-  - 
+  - playerCore
+  - enamyCore
+  - sideBoxes
+  - ik
   - 
   - 
   - 

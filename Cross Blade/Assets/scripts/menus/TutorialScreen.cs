@@ -66,6 +66,7 @@ public class TutorialScreen : MonoBehaviour
 
     public void loadLevel()
     {
+        options.gameObject.GetComponent<SceanLoader>().LoadScene(sceanName);
         SceneManager.LoadScene(sceanName, LoadSceneMode.Single);
     }
 

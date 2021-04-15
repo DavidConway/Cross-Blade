@@ -32,6 +32,7 @@ public class MpMenu : MonoBehaviour
 
     public void load()
     {
+        options.SetPlayerHeight();
         loader.LoadScene("VoidMP");
     }
 
