@@ -83,8 +83,14 @@ public class MultiplayerWeponStart : NetworkedBehaviour
             {
                 left = GetNetworkedObject(leftId.Value).gameObject;
                 right = GetNetworkedObject(rightId.Value).gameObject;
+                right.transform.localScale = new Vector3(-1, 1, 1);
+                Quaternion zeroRote = new Quaternion(0, 0, 0, 0); // makes sure there is no odd rotation
+                zeroRote.eulerAngles = new Vector3(0, 0, 0);
+                left.transform.localRotation = zeroRote;
+                right.transform.localRotation = zeroRote;
                 changeLayers(left.gameObject, "enamyWepon");
                 changeLayers(right.gameObject, "enamyWepon");
+                weponSpawned.Value = 3;
             }
         }
         else

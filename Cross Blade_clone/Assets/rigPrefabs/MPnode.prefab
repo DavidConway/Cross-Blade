@@ -161,6 +161,11 @@ PrefabInstance:
       propertyPath: hitCounter
       value: 
       objectReference: {fileID: 2277991160280807496}
+    - target: {fileID: 8914830574087293635, guid: 3179ee84d7d58f945ac2786ffe323042,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3179ee84d7d58f945ac2786ffe323042, type: 3}
 --- !u!1 &3599931365374206907 stripped

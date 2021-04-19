@@ -71,7 +71,7 @@ public class LocalModelPos : MonoBehaviour
         {
             cam = GameObject.Find("Main Camera");
         }
-        Vector3 neck = player.transform.position + ((player.transform.forward * -1) * (0.1f*scale)) + ((player.transform.up * -1) * (0.1f*scale)); // places model root at players hight down from cam (kinda)
+        Vector3 neck = player.transform.position + ((player.transform.forward * -1) * (0.2f*scale)) + ((player.transform.up * -1) * (0.2f*scale)); // places model root at players hight down from cam (kinda)
         this.transform.position = (neck) + (Vector3.down * (options.height - (0.45f * scale)));
         this.transform.rotation = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0);
     }
