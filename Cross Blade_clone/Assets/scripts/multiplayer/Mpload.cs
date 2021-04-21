@@ -85,6 +85,7 @@ public class Mpload : MonoBehaviour
                 if(NetworkingManager.Singleton.ConnectedClientsList.Count == 2)
                 {
                     started = true;
+
                 }
             }
             else

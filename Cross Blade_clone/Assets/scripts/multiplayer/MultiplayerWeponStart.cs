@@ -36,13 +36,7 @@ public class MultiplayerWeponStart : NetworkedBehaviour
             {
                 id.Value = NetworkingManager.Singleton.LocalClientId;
             }
-            
 
-        }
-        if (IsServer && GameObject.Find("MPManager") != null)
-        {
-            left.GetComponent<NetworkedObject>().Spawn();
-            right.GetComponent<NetworkedObject>().Spawn();
         }
         
     }

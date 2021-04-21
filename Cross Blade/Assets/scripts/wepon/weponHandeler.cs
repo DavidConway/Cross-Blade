@@ -18,6 +18,7 @@ public class weponHandeler : NetworkedBehaviour
     public bool hitting;
     private Material mat;
     public MeshRenderer renderer;
+    private float wepSoundDelay = 1;
 
     void Start()
     {
@@ -37,6 +38,11 @@ public class weponHandeler : NetworkedBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(wepSoundDelay >= 0)
+        {
+            wepSoundDelay -= Time.deltaTime;
+        }
+
         if (inWepon)
         {
             this.active.Value = false;
@@ -57,35 +63,32 @@ public class weponHandeler : NetworkedBehaviour
     }
 
     //wepon colider handeler
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         GameObject myCol = collision.contacts[0].thisCollider.gameObject;
+        weponHandeler other = collision.gameObject.GetComponent<weponHandeler>();
         if (collision.gameObject.layer == LayerMask.NameToLayer("enamyWepon") || collision.gameObject.layer == LayerMask.NameToLayer("playerWeapon"))
         {
              if (myCol.tag == "blunts")
             {
-                if(inWepon == false && active.Value)
+                if(active.Value)
                 {
                     debugLogConsole.uiLog(this.gameObject.name + " " + collision.gameObject.name);
-                    collision.gameObject.GetComponent<weponHandeler>().active.Value = false;
-                    wepSound.PlayBlock();
+                    other.active.Value = false;
+                    if (collision.gameObject.layer == LayerMask.NameToLayer("enamyWepon"))
+                    {
+                        hitBoxHandeler.hitTime = 1;
+                    }
+                    if (wepSoundDelay <= 0)
+                    {
+                        wepSoundDelay = 1;
+                        wepSound.PlayBlock();
+                    }
                 }
-                inWepon = true;
-                
+      
             }
         }
     }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("enamyWepon") || collision.gameObject.layer == LayerMask.NameToLayer("playerWeapon")){
-            inWepon = false;
-        }
-
-
-    }
-
-
 }
 
 public enum Side
