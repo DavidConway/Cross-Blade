@@ -33,8 +33,9 @@ public class hitBoxHandeler : MonoBehaviour
         wepSound = colitionPoint.GetComponentInParent<WeponSound>();
         try
         {
-            if (hitTime <= 0 && !hitting) {
-                weponHandeler wepon = collision.gameObject.GetComponentInParent<weponHandeler>();
+            weponHandeler wepon = collision.gameObject.GetComponentInParent<weponHandeler>();
+            if (hitTime <= 0 && !hitting && !wepon.inWepon() ) {
+                
 
                 if (wepon.active.Value)
                 {

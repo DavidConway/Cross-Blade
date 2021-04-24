@@ -14,11 +14,11 @@ public class weponHandeler : NetworkedBehaviour
     private WeponSound wepSound;
     private bool localActive = false;
 
-    public bool inWepon;
     public bool hitting;
     private Material mat;
     public MeshRenderer renderer;
     private float wepSoundDelay = 1;
+    public List<GameObject> weponsIn = new List<GameObject>();
 
     void Start()
     {
@@ -43,7 +43,7 @@ public class weponHandeler : NetworkedBehaviour
             wepSoundDelay -= Time.deltaTime;
         }
 
-        if (inWepon)
+        if (this.active.Value && inWepon())
         {
             this.active.Value = false;
         }
@@ -69,6 +69,7 @@ public class weponHandeler : NetworkedBehaviour
         weponHandeler other = collision.gameObject.GetComponent<weponHandeler>();
         if (collision.gameObject.layer == LayerMask.NameToLayer("enamyWepon") || collision.gameObject.layer == LayerMask.NameToLayer("playerWeapon"))
         {
+            other.weponsIn.Add(this.gameObject);
              if (myCol.tag == "blunts")
             {
                 if(active.Value)
@@ -87,6 +88,33 @@ public class weponHandeler : NetworkedBehaviour
                 }
       
             }
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("enamyWepon") || collision.gameObject.layer == LayerMask.NameToLayer("playerWeapon"))
+        {
+            try{
+                weponHandeler other = collision.gameObject.GetComponent<weponHandeler>();
+                other.weponsIn.Remove(this.gameObject);
+            }
+            catch
+            {
+
+            }
+        }
+    }
+
+    public bool inWepon()
+    {
+        if(weponsIn .Count > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
