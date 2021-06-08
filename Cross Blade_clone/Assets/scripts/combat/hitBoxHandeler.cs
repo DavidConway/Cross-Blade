@@ -275,11 +275,6 @@ public class hitBoxHandeler : MonoBehaviour
         {
             hitCounter.countHit();
         }
-        debugLogConsole.uiLog("---------------------");
-        debugLogConsole.uiLog("hit time: " + hitTime);
-        debugLogConsole.uiLog("hitting: " + hitting);
-        hitTime = 1;
-        hitting = false;
         
         playSound();
     }

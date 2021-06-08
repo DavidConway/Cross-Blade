@@ -3548,7 +3548,7 @@ MonoBehaviour:
   SupportWebsocket: 0
   Channels: []
   UseMLAPIRelay: 1
-  MLAPIRelayAddress: 54.76.121.233
+  MLAPIRelayAddress: 34.245.93.79
   MLAPIRelayPort: 8888
 --- !u!4 &2142122013
 Transform:
